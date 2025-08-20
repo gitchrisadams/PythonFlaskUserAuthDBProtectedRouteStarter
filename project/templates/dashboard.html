@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock title %}
+{% block content %}
+<div style="max-width: 800px; margin: 2rem auto; padding: 2rem; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+  <h2 style="text-align: center; color: #333;">🚀 Welcome to your Dashboard!</h2>
+
+  <p style="font-size: 1.2rem; color: #555; text-align: center;">
+    Hi <strong>{{user.username}}</strong>,
+  </p>
+  <p style="font-size: 1.1rem; color: #555; text-align: center;">
+    Your role: <strong>{{user.role}}</strong>,
+  </p>
+  <hr style="border: 1px solid #ccc; margin: 1rem 0;">
+  <p style="font-size: 1rem; color: #666; text-align: center;">
+    This page allows you to manage your profile, explore the system and more!
+  </p>
+</div>
+{% endblock content %}

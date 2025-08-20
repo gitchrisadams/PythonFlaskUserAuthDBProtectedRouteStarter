@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Flask Roles App {% endblock %}</title>
+    <link rel="stylesheet" href = "{{url_for('static', filename='style.css')}}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2rem auto;
+            padding: 1rem;
+            max-width: 800px;
+            background-color: #f9f9f9;
+            color: #333
+        }
+
+        header, footer {
+            text-align: center;
+        }
+
+        header h1 {
+            margin-bottom: 0.5rem;
+        }
+
+        nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #007BFF;
+        }
+
+        nav a:hover {
+            color: gray;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .flash-message {
+            background-color: #ffe0e0;
+            border: 1px solid #ff4d4d;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            color: #a10000;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🔐 Flask Roles & Permissions</h1>
+        <nav>
+            <!-- Nav links when user is authenticated -->
+            {% if current_user.is_authenticated %}
+                <p>Welcome, <strong>{{current_user.username}}</strong>(Role:<em>{{current_user.role}}</em> )</p>
+                <a href = "{{url_for('dashboard')}}">🏡 Dashboard</a>
+                <!-- Nav links when user is logged in as Admin-->
+                {% if current_user.role == 'admin' %}
+                    | <a href = "{{url_for('admin_page')}}">⚙️ Admin</a>
+                {% endif %}
+                    <!-- Show the Logout page in all cases a user is logged in -->
+                    | <a href = "{{url_for('logout')}}">🚪 Logout</a>
+                {% else %}
+                    <!-- User is NOT logged in, show login page -->
+                    <a href = "{{url_for('login')}}">🔑 Login</a>
+                    <a href = "{{url_for('register')}}">📝 Register</a>
+            {% endif %}
+        </nav>
+        <hr>
+    </header>
+    <main>
+        <!-- Show any flash messages -->
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="flash-message">
+                {% for msg in messages%}
+                    <p>{{ msg }}</p>
+                {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

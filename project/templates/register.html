@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<h2 style="text-align: center; color: #333;">📝 Register Your Account</h2>
+<div style="max-width: 400px; margin: 2rem auto; padding: 2rem; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+  <form method="POST">
+
+    <!-- Username and Password input -->
+    <div style="margin-bottom: 1rem;">
+      <label for="username" style="display: block; font-weight: bold; margin-bottom: 0.5rem;"></label>
+      <input 
+        type="text"
+        id="username"
+        name="username"
+        placeholder="Choose a username"
+        style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px;"
+      >
+    </div>
+
+    <div style="margin-bottom: 1rem;">
+      <label for="password" style="display: block; font-weight: bold; margin-bottom: 0.5rem;">
+        <input 
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Create a password"
+          style = "width: 100%; padding: 0.75rem; border 1px solid #ccc; border-radiux: 4px;"
+        >
+      </label>
+    </div> 
+
+    <!-- Role Drop down -->
+    <div style="margin-bottom: 1.5rem;">
+      <label for="role" style="display: block; font-weight: bold; margin-bottom: 0.5rem;">
+        <select 
+          id="role"
+          name="role"
+          style = "width: 100%; padding: 0.75rem; border 1px solid #ccc; border-radiux: 4px;"
+        >
+          <option value="viewer">Viewer</option>
+          <option value="editor">Editor</option>
+          <option value="admin">Admin</option>
+        </select>
+      </label>
+    </div> 
+
+    <button
+      type="submit"
+      style="width: 100%; background-color: #28a745; color: white; padding: 0.75rem; cursor: pointer;"
+    >
+    📝Register Now
+    </button>
+  </form>
+
+</div>
+{% endblock %}
+
